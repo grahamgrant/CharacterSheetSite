@@ -1,0 +1,1971 @@
+print "Welcome to the 1028 text adventure!"
+print "This is a text RPG using a combo of pathfiner and DnD 5e, mostly 5e. This game is Hardmode. You die, your character is deleted, no saves, nothing. I'll try to walk you through each stup but I assume you have acces to some knoledge of mechanics so if you get lost, check out 5esrd.com or d20pfsrd.com. Good luck!"
+
+def genChar():
+    print "Lets  begin by creating your character."
+
+    import random
+    bonus=""
+    penalty=""
+    my_race= ""
+    def race():
+        answer = raw_input("First, which race would you like to be?").lower()
+        if answer == "human" or answer == "half-orc" or answer == "half-elf":
+            return answer
+            print "You are a " + answer + "!"
+        elif answer == "elf" or answer == "dwarf":
+            return answer
+            print "You are a " + answer + "!"
+        elif answer == "gnome" or answer == "halfling":
+            return answer
+            print "You are a " + answer + "!"
+        else:
+            print "Sorry, havent added that one yet. Try again."
+            race()
+
+    player.my_race = race()
+
+    print "Ok, now lets get some stats. These will be genereated with the 4D6H3 method and are random so if they suck you could just restart but whats the fun in that, right?"
+
+    def getStat():
+        da = random.randrange(1,7)
+        db = random.randrange(1,7)
+        dc = random.randrange(1,7)
+        dd = random.randrange(1,7)
+        stat= da + db + dc + dd
+        low= min(da , db ,dc ,dd)
+        return stat - low
+
+    Stat1 = getStat()
+    Stat2 = getStat()
+    Stat3 = getStat()
+    Stat4 = getStat()
+    Stat5 = getStat()
+    Stat6 = getStat()
+
+    if player.my_race=="elf":
+        bonus = "DEX and INT"
+        penalty="CON."
+    elif player.my_race=="dwarf":
+        bonus = "CON and WIS"
+        penalty="CHA."
+    elif player.my_race=="halfling":
+        bonus="DEX and CHA"
+        penalty = "STR."
+    elif player.my_race=="gnome":
+        bonus="CON and CHA"
+        penalty = "STR."
+    elif player.my_race=="human" or player.my_race=="half-elf" or player.my_race == "half-orc":
+        bonus = "one of your choice"
+        penalty ="nothing!"
+
+    print str(Stat1) + " " + str(Stat2) + "  " + str(Stat3) + " " + str(Stat4) + " " +     str(Stat5) + " " + str(Stat6)
+    print "These are your stats!"
+    print "Because you are a "+str(player.my_race)+" you get a +2 to "+bonus+" and player.a -2 to "+penalty
+
+    class gone(object):
+        onegon = False
+        twgon = False
+        thrgon = False
+        forgon = False
+        fivgon = False
+        sixgon = False
+    use=gone()
+    strdone=False
+    dexdone==False
+    condone=False
+    intdone=False
+    wisdone=False
+    chadone=False
+    def getSTATS(Stat1, Stat2, Stat3, Stat4, Stat5, Stat6):
+        if not strdone:
+            mstr = raw_input("Which value would you like to assign to your STR?")
+            if mstr == str(Stat1) and use.onegon == False:
+                player.STR=Stat1
+                print("Your Strength is " +str(player.STR))
+                use.onegon=True
+                strdone=True
+            elif mstr == str(Stat2) and use.twgon == False:
+                player.STR = Stat2
+                print("Your Strength is " +str(player.STR))
+                use.twgon=True
+                strdone=True
+            elif mstr == str(Stat3) and use.thrgon == False:
+                player.STR = Stat3
+                print("Your Strength is " +str(player.STR))
+                use.thrgon=True
+                strdone=True
+            elif mstr == str(Stat4) and use.forgon == False:
+                player.STR = Stat4
+                print("Your Strength is " +str(player.STR))
+                use.forgon=True
+                strdone=True
+            elif mstr == str(Stat5) and use.fivgon == False:
+                player.STR = Stat5
+                print("Your Strength is " +str(player.STR))
+                use.fivgon=True
+                strdone=True
+            elif mstr == str(Stat6) and use.sixgon == False:
+                player.STR = Stat6
+                print("Your Strength is " +str(player.STR))
+                use.sixgon=True
+                strdone=True
+            else:
+                print "sorry, use a stat you actually rolled"
+                use.onegon = False
+                use.twgon = False
+                use.thrgon = False
+                use.forgon = False
+                use.fivgon = False
+                use.sixgon = False
+                getSTATS(Stat1, Stat2, Stat3, Stat4, Stat5, Stat6)
+        if not dexdone:
+            mstr = raw_input("Which value would you like to assign to your DEX?")
+            if mstr == str(Stat1) and use.onegon == False:
+                player.DEX=Stat1
+                print("Your Dexterity is " +str(player.STR))
+                use.onegon=True
+                dexdone==True
+            elif mstr == str(Stat2) and use.twgon == False:
+                player.DEX = Stat2
+                print("Your Dexterity is " +str(player.STR))
+                use.twgon=True
+                dexdone==True
+            elif mstr == str(Stat3) and use.thrgon == False:
+                player.DEX = Stat3
+                print("Your Dexterity is " +str(player.STR))
+                use.thrgon=True
+                dexdone==True
+            elif mstr == str(Stat4) and use.forgon == False:
+                player.DEX = Stat4
+                print("Your Dexterity is " +str(player.STR))
+                use.forgon=True
+                dexdone==True
+            elif mstr == str(Stat5) and use.fivgon == False:
+                player.DEX = Stat5
+                print("Your Dexterity is " +str(player.STR))
+                use.fivgon=True
+                dexdone==True
+            elif mstr == str(Stat6) and use.sixgon == False:
+                player.DEX = Stat6
+                print("Your Dexterity is " +str(player.STR))
+                use.sixgon=True
+                dexdone==True
+            else:
+                print "sorry, use a stat you actually rolled"
+                use.onegon = False
+                use.twgon = False
+                use.thrgon = False
+                use.forgon = False
+                use.fivgon = False
+                use.sixgon = False
+                getSTATS(Stat1, Stat2, Stat3, Stat4, Stat5, Stat6)
+        if not condone:
+            mcon = raw_input("Which value would you like to assign to your CON?")
+            if mcon == str(Stat1) and use.onegon == False:
+                player.CON=Stat1
+                print("Your Constitution is " +str(player.CON))
+                use.onegon=True
+                condone==True
+            elif mcon == str(Stat2) and use.twgon == False:
+                player.CON = Stat2
+                print("Your Constitution is " +str(player.CON))
+                use.twgon=True
+                condone==True
+            elif mcon == str(Stat3) and use.thrgon == False:
+                player.CON = Stat3
+                print("Your Constitution is " +str(player.CON))
+                use.thrgon=True
+                condone==True
+            elif mcon == str(Stat4) and use.forgon == False:
+                player.CON = Stat4
+                print("Your Constitution is " +str(player.CON))
+                use.forgon=True
+                condone==True
+            elif mcon == str(Stat5) and use.fivgon == False:
+                player.CON = Stat5
+                print("Your Constitution is " +str(player.CON))
+                use.fivgon=True
+                condone==True
+            elif mcon == str(Stat6) and use.sixgon == False:
+                player.CON = Stat6
+                print("Your Constitution is " +str(player.CON))
+                use.sixgon=True
+                condone==True
+            else:
+                print "sorry, use a stat you actually rolled"
+                use.onegon = False
+                use.twgon = False
+                use.thrgon = False
+                use.forgon = False
+                use.fivgon = False
+                use.sixgon = False
+                getSTATS(Stat1, Stat2, Stat3, Stat4, Stat5, Stat6)
+        if not intdone:
+            mint = raw_input("Which value would you like to assign to your INT?")
+            if mint == str(Stat1) and use.onegon == False:
+                player.INT=Stat1
+                print("Your Intelligence is " +str(player.INT))
+                use.onegon=True
+                intdone==True
+            elif mint == str(Stat2) and use.twgon == False:
+                player.INT = Stat2
+                print("Your Intelligence is " +str(player.INT))
+                use.twgon=True
+                intdone==True
+            elif mint == str(Stat3) and use.thrgon == False:
+                player.INT = Stat3
+                print("Your Intelligence is " +str(player.INT))
+                use.thrgon=True
+                intdone==True
+            elif mint == str(Stat4) and use.forgon == False:
+                player.INT = Stat4
+                print("Your Intelligence is " +str(player.INT))
+                use.forgon=True
+                intdone==True
+            elif mint == str(Stat5) and use.fivgon == False:
+                player.INT = Stat5
+                print("Your Intelligence is " +str(player.INT))
+                use.fivgon=True
+                intdone==True
+            elif mint == str(Stat6) and use.sixgon == False:
+                player.INT = Stat6
+                print("Your Intelligence is " +str(player.INT))
+                use.sixgon=True
+                intdone==True
+            else:
+                print "sorry, use a stat you actually rolled"
+                use.onegon = False
+                use.twgon = False
+                use.thrgon = False
+                use.forgon = False
+                use.fivgon = False
+                use.sixgon = False
+                getSTATS(Stat1, Stat2, Stat3, Stat4, Stat5, Stat6)
+
+        if not wisdone:
+            mwis = raw_input("Which value would you like to assign to your WIS?")
+            if mwis == str(Stat1) and use.onegon == False:
+                player.WIS=Stat1
+                print("Your Wisdom is " +str(player.WIS))
+                use.onegon=True
+                wisdone==True
+            elif mwis == str(Stat2) and use.twgon == False:
+                player.WIS = Stat2
+                print("Your Wisdom is " +str(player.WIS))
+                use.twgon=True
+                wisdone==True
+            elif mwis == str(Stat3) and use.thrgon == False:
+                player.WIS = Stat3
+                print("Your Wisdom is " +str(player.WIS))
+                use.thrgon=True
+                wisdone==True
+            elif mwis == str(Stat4) and use.forgon == False:
+                player.WIS = Stat4
+                print("Your Wisdom is " +str(player.WIS))
+                use.forgon=True
+                wisdone==True
+            elif mwis == str(Stat5) and use.fivgon == False:
+                player.WIS = Stat5
+                print("Your Wisdom is " +str(player.WIS))
+                use.fivgon=True
+                wisdone==True
+            elif mwis == str(Stat6) and use.sixgon == False:
+                player.WIS = Stat6
+                print("Your Wisdom is " +str(player.WIS))
+                use.sixgon=True
+                wisdone==True
+            else:
+                print "sorry, use a stat you actually rolled"
+                use.onegon = False
+                use.twgon = False
+                use.thrgon = False
+                use.forgon = False
+                use.fivgon = False
+                use.sixgon = False
+                getSTATS(Stat1, Stat2, Stat3, Stat4, Stat5, Stat6)
+
+        if not chadone:
+            mcha = raw_input("Which value would you like to assign to your CHA?")
+            if mcha == str(Stat1) and use.onegon == False:
+                player.CHA=Stat1
+                print("Your Charisma is " +str(player.CHA))
+                use.onegon=True
+                chadone==True
+            elif mcha == str(Stat2) and use.twgon == False:
+                player.CHA = Stat2
+                print("Your Charisma is " +str(player.CHA))
+                use.twgon=True
+                chadone==True
+            elif mcha == str(Stat3) and use.thrgon == False:
+                player.CHA = Stat3
+                print("Your Charisma is " +str(player.CHA))
+                use.thrgon=True
+                chadone==True
+            elif mcha == str(Stat4) and use.forgon == False:
+                player.CHA = Stat4
+                print("Your Charisma is " +str(player.CHA))
+                use.forgon=True
+            elif mcha == str(Stat5) and use.fivgon == False:
+                player.CHA = Stat5
+                print("Your Charisma is " +str(player.CHA))
+                use.fivgon=True
+                chadone==True
+            elif mcha == str(Stat6) and use.sixgon == False:
+                player.CHA = Stat6
+                print("Your Charisma is " +str(player.CHA))
+                use.sixgon=True
+                chadone==True
+            else:
+                print "sorry, use a stat you actually rolled"
+                use.onegon = False
+                use.twgon = False
+                use.thrgon = False
+                use.forgon = False
+                use.fivgon = False
+                use.sixgon = False
+                getSTATS(Stat1, Stat2, Stat3, Stat4, Stat5, Stat6)
+                
+    getSTATS(Stat1, Stat2, Stat3, Stat4, Stat5, Stat6)
+
+    def addHUM():
+        if player.my_race=="human" or player.my_race=="half-elf" or player.my_race == "half-orc":
+            print "Because you are a " + player.my_race+", you may add +2 to any stat"
+            madd = raw_input("Which Stat would you like to add to?").upper()
+            if madd == "STR":
+                player.STR=player.STR+2
+                print "Your Strength is now " + str(player.STR)+ "!"
+            elif madd == "DEX":
+                player.DEX=player.DEX+2
+                print "Your Dexterity is now " + str(player.DEX)+ "!"
+            elif madd == "CON":
+                player.CON=player.CON+2
+                print "Your Constitution is now " + str(player.CON)+ "!"
+            elif madd == "INT":
+                player.INT=player.INT+2
+                print "Your Intelligence is now " + str(player.INT)+ "!"
+            elif madd == "WIS":
+                player.WIS=player.WIS+2
+                print "Your Wisdom is now " + str(player.WIS)+ "!"
+            elif madd == "CHA":
+                player.CHA=player.CHA+2
+                print "Your Charisma is now " + str(player.CHA)+ "!"
+            else:
+                print "that's not a stat bro"
+                addHUM()
+    addHUM()
+
+    if player.my_race=="gnome":
+        player.STR=player.STR-2
+        player.CHA=player.CHA+2
+        player.CON=player.CON+2
+    elif player.my_race=="halfling":
+        player.STR=player.STR-2
+        player.CHA=player.CHA+2
+        player.DEX=player.DEX+2
+    elif player.my_race=="elf":
+        player.DEX=player.DEX+2
+        player.INT=player.INT+2
+        player.CON=player.CON-2
+    elif player.my_race=="dwarf":
+        player.CON=player.CON+2
+        player.WIS=player.WIS+2
+        player.CHA=player.CHA-2
+
+    print"Cool, so now your stats are STR:"+str(player.STR)+" DEX:"+str(player.DEX)+" CON:"+str(player.CON)+" INT:"+str(player.INT)+" WIS:"+str(player.WIS)+" CHA:"+str(player.CHA)
+    print "It's time to pick a class!"
+    def chclass():
+        answer = raw_input("Which class would you like to be? Only core classes.").lower()
+        if answer == "fighter" :
+            return answer
+            print "You are a " + answer + "!"
+        elif answer == "paladin":
+            return answer
+            print "You are a " + answer + "!"
+        elif answer == "cleric":
+            return answer
+            print "You are a " + answer + "!"
+        elif answer == "druid":
+            return answer
+            print "You are a " + answer + "!"
+        elif answer == "barbarian":
+            return answer
+            print "You are a " + answer + "!"
+        elif answer == "ranger":
+            return answer
+            print "You are a " + answer + "!"
+        elif answer == "bard":
+            return answer
+            print "You are a " + answer + "!"
+        elif answer == "rogue":
+            return answer
+            print "You are a " + answer + "!"
+        elif answer == "wizard":
+            return answer
+            print "You are a " + answer + "!"
+        elif answer == "sorceror":
+            return answer
+            print "You are a " + answer + "!"
+        elif answer == "warlock":
+            return answer
+            print "You are a " + answer + "!"
+        else:
+            print "Sorry, havent added that one yet. Try again."
+            chclass()
+
+    player.my_class=chclass()
+
+    print "OK, so now you may choose which skills to be proficient with."
+
+    def addskill():
+        if player.my_class == "fighter":
+            player.hp = 10 + mod(player.CON)
+            skill=raw_input("Choose a skill from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, and Survival").lower()
+            if skill == "acrobatics":
+                player.acrskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "animal handling":
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics":
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "history":
+                player.hiskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight":
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation":
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception":
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "survival":
+                player.surskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, and Survival").lower()
+            if skill == "acrobatics" and player.acrskl==False:
+                player.acrskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "animal handling" and player.ahskl==False:
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics" and player.atskl==False:
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "history" and player.hiskl==False:
+                player.hiskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight" and player.inskl==False:
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation" and player.intskl==False:
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception" and player.perskl==False:
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "survival" and playersurskl==False:
+                player.surskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+        elif player.my_class == "barbarian" :
+            skill=raw_input("Choose a skill from Acrobatics, Animal Handling, Athletics, Intimidation, Perception, and Survival").lower()
+            if skill == "animal handling":
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics":
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation":
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception":
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "survival":
+                player.surskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "nature":
+                player.natskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from Acrobatics, Animal Handling, Athletics, Intimidation, Perception, and Survival").lower()
+            if skill == "animal handling" and player.ahskl==False:
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics" and player.atskl==False:
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation" and player.intskl==False:
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif answer == "perception" and perskl==False:
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "survival" and player.surskl==False:
+                player.surskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "nature" and player.natskl==False:
+                player.natskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+        if player.my_class == "cleric" :
+            player.hp = 8 + mod(player.CON)
+            skill=raw_input("Choose a skill from History, insight, medicine, persuasion, and Religion").lower()
+            if skill == "history":
+                player.hiskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight":
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "medicine":
+                player.medskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "persuasion":
+                player.persskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion":
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from History, insight, medicine, persuasion, and Religion").lower()
+            if skill == "history" and player.hiskl==False:
+                player.hiskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight" and player.inskl==False:
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "medicine" and player.medskl==False:
+                player.medskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "persuasion" and player.perskl==False:
+                player.persskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion" and player.relskl==False:
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+        if player.my_class == "druid" :
+            player.hp = 8 + mod(player.CON)
+            skill=raw_input("Choose a skill from arcana, animal handling, insight, medicine, nature, perception, religion, survival").lower()
+            if skill == "arcana":
+                player.arcskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "animal handling":
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight":
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "medicine":
+                player.medskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion":
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "nature":
+                player.natskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception":
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "survival":
+                player.surskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from arcana, animal handling, insight, medicine, nature, perception, religion, survival").lower()
+            if skill == "arcana" and player.arcskl==False:
+                player.arcskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "animal handling" and player.ahskl==False:
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight" and player.inskl==False:
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "medicine" and player.medskl==False:
+                player.medskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion" and player.relskl==False:
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "nature" and player.natskl==False:
+                player.natskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception" and perskl==False:
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "survival" and player.surskl==False:
+                player.surskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+        if player.my_class == "monk" :
+            player.hp = 8 + mod(player.CON)
+            skill=raw_input("Choose a skill from acrobatics, athletics, history, insight, religion, and stealth").lower()
+            if skill == "acrobatics":
+                player.acrskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics":
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "history":
+                player.hiskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight":
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion":
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "stealh":
+                player.sthskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from acrobatics, athletics, history, insight, religion, and stealth").lower()
+            if skill == "acrobatics" and acrskl==False:
+                player.acrskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics" and player.atskl==False:
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "history" and player.hiskl==False:
+                player.hiskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight" and player.inskl==False:
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion" and player.relskl==False:
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "stealh" and sthskl==False:
+                player.sthskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+        if player.my_class == "ranger" :
+            player.hp = 10 + mod(player.CON)
+            skill=raw_input("Choose a skill from animal handling, athletics, insight, investigation, nature, perception, stealth, and survival").lower()
+            if skill == "animal handling":
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics":
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight":
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "investigation":
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "nature":
+                player.natskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception":
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "survival":
+                player.surskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "stealh":
+                player.sthskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from animal handling, athletics, insight, investigation, nature, perception, stealth, and survival").lower()
+            if skill == "animal handling" and ahskl==False:
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics" and player.atskl==False:
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight" and player.inskl==False:
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "investigation" and player.invskl==False:
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "nature" and player.natskl==False:
+                player.natskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception" and player.perskl==False:
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "survival" and player.surskl==False:
+                player.surskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "stealh" and player.sthskl==False:
+                player.sthskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from animal handling, athletics, insight, investigation, nature, perception, stealth, and survival").lower()
+            if skill == "animal handling" and player.ahskl==False:
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics" and player.atskl==False:
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight" and player.inskl==False:
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "investigation" and player.invskl==False:
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "nature" and player.natskl==False :
+                player.natskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception" and player.perskl==False:
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "survival" and player.surskl==False:
+                player.surskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "stealh" and player.sthskl==False:
+                player.sthskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+        if player.my_class == "bard" :
+            player.hp = 8 + mod(player.CON)
+            skill=raw_input("Choose a skill from acrobatics, animal handling, arcana, athletics, deception, history, insight, intimidation, investigation, medicine, nature, perception, performance, persuasion, religion, sleight of hand, stealth, and survival").lower()
+            if skill == "animal handling":
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics":
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight":
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "investigation":
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation":
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "nature":
+                player.natskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception":
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "survival":
+                player.surskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "stealth":
+                player.sthskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "arcana":
+                player.arcskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "acrobatics":
+                player.acrskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "deception":
+                player.decskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "medicine":
+                player.medskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "performance":
+                player.perfskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "sleight of hand":
+                player.sohskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "history":
+                player.hiskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "persuasion":
+                player.persskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion":
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from acrobatics, athletics, deception, insight, intimidation, investigation, medicine, nature, perception, performance, persuasion, religion, sleight of hand, stealth, and survival").lower()
+            if skill == "animal handling" and player.ahskl==False:
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics" and player.atskl==False:
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight" and player.inskl==False:
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "investigation" and player.invskl==False:
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation" and player.intskl==False:
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "nature" and player.natskl==False:
+                player.natskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception" and player.perskl==False:
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "survival" and player.surskl==False:
+                player.surskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "stealh" and player.sthskl==False:
+                player.sthskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "arcana" and player.arcskl==False:
+                player.arcskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "acrobatics" and player.acrskl==False:
+                player.acrskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "deception" and player.decskl==False:
+                player.decskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "medicine" and player.medskl==False:
+                player.medskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "performance" and player.perfskl==False:
+                player.perfskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "sleight of hand" and player.sohskl==False:
+                player.sohskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "history" and player.hiskl==False:
+                player.hiskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "persuasion" and player.perskl==False:
+                player.persskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion" and player.relskl==False:
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from acrobatics, animal handling, arcana, athletics, deception, history, insight, investigation, medicine, nature, perception, performance, persuasion, religion, sleight of hand, stealth, and survival").lower()
+            if skill == "animal handling" and player.ahskl==False and ahskl==False:
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics" and player.atskl==False:
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight" and player.inskl==False :
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "investigation" and player.invskl==False :
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation" and player.intskl==False:
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "nature" and player.natskl==False:
+                player.natskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception" and player.perskl==False:
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "survival" and player.surskl==False:
+                player.surskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "stealh" and player.sthskl==False:
+                player.sthskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "arcana" and player.arcskl==False:
+                player.arcskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "acrobatics" and player.acrskl==False:
+                player.acrskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "deception" and player. decskl==False:
+                player.decskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "medicine" and player.medskl==False:
+                player.medskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "performance" and player.perfskl==False:
+                player.perfskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "sleight of hand" and player.sohskl==False:
+                player.sohskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "history" and player.hiskl==False:
+                player.hiskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "persuasion" and player.persskl==False:
+                player.persskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion" and player.relskl==False:
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+        if player.my_class == "rogue" :
+            player.hp = 8 + mod(player.CON)
+            skill=raw_input("Choose a skill from acrobatics, athletics, deception, insight, intimidation, investigation, perception, performance, persuasion,sleight of hand, and stealth").lower()
+            if skill == "athletics":
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight":
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "investigation":
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation":
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception":
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "stealth":
+                player.sthskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "acrobatics":
+                player.acrskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "deception":
+                player.decskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "performance":
+                player.perfskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "sleight of hand":
+                player.sohskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "persuasion":
+                player.persskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from acrobatics, athletics, deception, insight, intimidation, investigation, perception, performance, persuasion,sleight of hand, and stealth").lower()
+            if skill == "animal handling" and player.ahskl==False:
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics" and player.atskl==False:
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight" and player.inskl==False:
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "investigation" and player.invskl==False:
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation" and player.intskl==False:
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception" and player.percskl==False:
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "stealh" and player.sthskl==False:
+                player.sthskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "acrobatics" and player.acrskl==False:
+                player.acrskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "deception" and player. decskl==False:
+                player.decskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "performance" and player.perfskl==False:
+                player.perfskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "sleight of hand" and player.sohskl==False:
+                player.sohskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "persuasion" and player.perskl==False:
+                player.persskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from acrobatics, athletics, deception, insight, intimidation, investigation, perception, performance, persuasion,sleight of hand, and stealth").lower()
+            if skill == "animal handling" and player.ahskl==False:
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics" and player.atskl==False:
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight" and player.inskl==False :
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "investigation" and player.invskl==False :
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation" and player.intskl==False :
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception" and player.percskl==False:
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "stealh" and player.sthskl==False:
+                player.sthskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "acrobatics" and player.acrskl==False:
+                player.acrskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "deception" and player. decskl==False:
+                player.decskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "performance" and player.perfskl==False:
+                player.perfskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "sleight of hand" and player.sohskill==False:
+                player.sohskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "persuasion" and player.perskl==False:
+                player.persskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from acrobatics, athletics, deception, insight, intimidation, investigation, perception, performance, persuasion,sleight of hand, and stealth").lower()
+            if skill == "animal handling" and player.ahskl==False:
+                player.ahskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "athletics" and player.atskl==False:
+                player.atskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight" and player.inskl==False :
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "investigation" and player.invskl==False :
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation" and player.intskl==False :
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "perception" and player.percskl==False:
+                player.perskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "stealh" and player.sthskl==False:
+                player.sthskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "acrobatics" and player.acrskl==False:
+                player.acrskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "deception" and player. decskl==False:
+                player.decskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "performance" and player.perfskl==False:
+                player.perfskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "sleight of hand" and player.sohskill==False:
+                player.sohskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "persuasion" and player.perskl==False:
+                player.persskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+        if player.my_class == "sorceror" :
+            player.hp = 6 + mod(player.CON)
+            skill=raw_input("Choose a skill from arcana, deception, insight, intimidation, persuasion, and religion").lower()
+            if skill == "insight":
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation":
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "arcana":
+                player.arcskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "deception":
+                player.decskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "persuasion":
+                player.persskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion":
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from arcana, deception, insight, intimidation, persuasion, and religion").lower()
+            if skill == "insight" and player.inskl==False:
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "investigation" and player.invskl==False:
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation" and player.intskl==False:
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "arcana" and player.arcskl==False:
+                player.arcskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "deception" and player. decskl==False:
+                player.decskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "persuasion" and player.perskl==False:
+                player.persskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion" and player.relskl==False:
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+        if player.my_class == "warlock" :
+            player.hp = 8 + mod(player.CON)
+            skill=raw_input("Choose a skill from arcana, deception, history, intimidation, investigation, nature, and religion").lower()
+            if skill == "investigation":
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation":
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "arcana":
+                player.arcskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "deception":
+                player.decskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "history":
+                player.hiskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion":
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "nature":
+                player.natskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from arcana, deception, history, intimidation, investigation, nature, and religion").lower()
+            if skill == "nature" and player.natskl==False:
+                player.natskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "investigation" and player.invskl==False:
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "intimidation" and player.intskl==False:
+                player.intskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "arcana" and player.arcskl==False:
+                player.arcskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "deception" and player. decskl==False:
+                player.decskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion" and player.relskl==False:
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "history" and player.hiskl==False:
+                player.hiskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+        if player.my_class == "wizard" :
+            player.hp = 6 + mod(player.CON)
+            skill=raw_input("Choose a skill from arcana, history, insight, investigation, medicine, and religion").lower()
+            if skill == "investigation":
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "insight":
+                player.inskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "arcana":
+                player.arcskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "medicine":
+                player.medskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "history":
+                player.hiskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion":
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+            skill=raw_input("Choose another skill from arcana, history, investigation, medicine, and religion").lower()
+            if skill == "investigation" and player.invskl==False:
+                player.invskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "history" and player.hiskl==False:
+                player.hiskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "arcana" and player.arcskl==False:
+                player.arcskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "medicine" and player.medskl==False:
+                player.medskl=True
+                print "You are profiecient in " + skill + "!"
+            elif skill == "religion" and player.relskl==False:
+                player.relskl=True
+                print "You are profiecient in " + skill + "!"
+            else:
+                print "whoopsies"
+                player.acrskl=False
+                player.ahskl=False
+                player.arcskl=False
+                player.atskl=False
+                player.decskl=False
+                player.hiskl=False
+                player.inskl=False
+                player.intskl=False
+                player.invskl=False
+                player.medskl=False
+                player.natskl=False
+                player.perskl=False
+                player.perfskl=False
+                player.persskl=False
+                player.relskl=False
+                player.sohskl=False
+                player.sthskl=False
+                player.surskl=False
+                addskill()
+        else:
+            print "shit's fucked Yo"
+
+
+    addskill()
+
+
+    def getRole():
+        player.role= raw_input("What has your role been in your small hometown of Cradburrow?(simple farmer, soldier, loner, apprentice, leader)").lower()
+        if player.role =="simple farmer" or player.role =="soldier" or player.role =="loner" or player.role =="apprentice" or player.role =="leader":
+            print "pfft, how typical. no origionality at all"
+        else:
+            print "nah bruh pick one i gave"
+            getRole()
+
+
+    getRole()
+
+    print "Ok, so only one last thing to decide"
+    player.name=raw_input("What is your name?")
+    print player.name+"??? Thats a pretty stupid name, but whatever I'll let it slide."
+
+def mod(skill):
+    skill=skill-10
+    abtg=skill%2
+    skill=skill-abtg
+    skill=skill/2
+    return skill
+def d20():
+    return random.randrange(1,21)
+def d12():
+    return random.randrange(1,13)
+def d10():
+    return random.randrange(1,11)
+def d8():
+    return random.randrange(1,9)
+def d6():
+    return random.randrange(1,7)
+def d4():
+    return random.randrange(1,5)
+class char:
+    name=""
+    STR=0
+    DEX=0
+    CON=0
+    INT=0
+    WIS=0
+    CHA=0
+    my_race=""
+    my_class=""
+    hp=0
+    ac=0
+    level=1
+    hd=0
+    saves=[0,0,0,0,0,0]
+    role=""
+    def getprof(self):
+        return self.level/5+2
+    jack=False
+    acrskl=False
+    ahskl=False
+    arcskl=False
+    atskl=False
+    decskl=False
+    hiskl=False
+    inskl=False
+    intskl=False
+    invskl=False
+    medskl=False
+    natskl=False
+    perskl=False
+    perfskl=False
+    persskl=False
+    relskl=False
+    sohskl=False
+    sthskl=False
+    surskl=False
+    acrsklex=False
+    ahsklex=False
+    arcsklex=False
+    atsklex=False
+    decsklex=False
+    hisklex=False
+    insklex=False
+    intsklex=False
+    invsklex=False
+    medsklex=False
+    natsklex=False
+    persklex=False
+    perfsklex=False
+    perssklex=False
+    relsklex=False
+    sohsklex=False
+    sthsklex=False
+    sursklex=False
+    def getacr(self):
+        if acrsklex==True:
+            return self.DEX+getprof()*2
+        elif acrskl==True:
+            return self.DEX+getprof()
+        elif jack==True:
+            return self.DEX+getprof()/2
+        else:
+            return self.DEX
+    def getah(self):
+        if ahsklex==True:
+            return self.CHA+getprof()*2
+        elif ahskl==True:
+            return self.CHA+getprof()
+        elif jack==True:
+            return self.CHA+getprof()/2
+        else:
+            return self.CHA
+    def getarc(self):
+        if arcsklex==True:
+            return self.INT+getprof()*2
+        elif arcskl==True:
+            return self.INT+getprof()
+        elif jack==True:
+            return self.INT+getprof()/2
+        else:
+            return self.INT
+    def getat(self):
+        if atsklex==True:
+            return self.STR+getprof()*2
+        elif atskl==True:
+            return self.STR+getprof()
+        elif jack==True:
+            return self.STR+getprof()/2
+        else:
+            return self.STR
+    def getdec(self):
+        if decsklex==True:
+            return self.CHA+getprof()*2
+        elif decskl==True:
+            return self.CHA+getprof()
+        elif jack==True:
+            return self.CHA+getprof()/2
+        else:
+            return self.CHA
+    def gethi(self):
+        if hisklex==True:
+            return self.INT+getprof()*2
+        elif hiskl==True:
+            return self.INT+getprof()
+        elif jack==True:
+            return self.INT+getprof()/2
+        else:
+            return self.INT
+    def getin(self):
+        if insklex==True:
+            return self.WIS+getprof()*2
+        elif inskl==True:
+            return self.WIS+getprof()
+        elif jack==True:
+            return self.WIS+getprof()/2
+        else:
+            return self.WIS
+    def getint(self):
+        if intsklex==True:
+            return self.CHA+getprof()*2
+        elif intskl==True:
+            return self.CHA+getprof()
+        elif jack==True:
+            return self.CHA+getprof()/2
+        else:
+            return self.CHA
+    def getinv(self):
+        if invsklex==True:
+            return self.INT+getprof()*2
+        elif invskl==True:
+            return self.INT+getprof()
+        elif jack==True:
+            return self.INT+getprof()/2
+        else:
+            return self.INT
+    def getmed(self):
+        if medsklex==True:
+            return self.WIS+getprof()*2
+        elif medskl==True:
+            return self.WIS+getprof()
+        elif jack==True:
+            return self.WIS+getprof()/2
+        else:
+            return self.WIS
+    def getnat(self):
+        if natsklex==True:
+            return self.INT+getprof()*2
+        elif natskl==True:
+            return self.INT+getprof()
+        elif jack==True:
+            return self.INT+getprof()/2
+        else:
+            return self.INT
+    def getpers(self):
+        if perssklex==True:
+            return self.CHA+getprof()*2
+        elif persskl==True:
+            return self.CHA+getprof()
+        elif jack==True:
+            return self.CHA+getprof()/2
+        else:
+            return self.CHA
+    def getperf(self):
+        if perfsklex==True:
+            return self.CHA+getprof()*2
+        elif perfskl==True:
+            return self.CHA+getprof()
+        elif jack==True:
+            return self.CHA+getprof()/2
+        else:
+            return self.CHA
+    def getrel(self):
+        if relsklex==True:
+            return self.INT+getprof()*2
+        elif relskl==True:
+            return self.INT+getprof()
+        elif jack==True:
+            return self.INT+getprof()/2
+        else:
+            return self.INT
+    def getsoh(self):
+        if sohsklex==True:
+            return self.DEX+getprof()*2
+        elif sohskl==True:
+            return self.DEX+getprof()
+        elif jack==True:
+            return self.DEX+getprof()/2
+        else:
+            return self.DEX
+    def getsth(self):
+        if sthsklex==True:
+            return self.DEX+getprof()*2
+        elif sthskl==True:
+            return self.DEX+getprof()
+        elif jack==True:
+            return self.DEX+getprof()/2
+        else:
+            return self.DEX
+    def getsur(self):
+        if sursklex==True:
+            return self.WIS+getprof()*2
+        elif surskl==True:
+            return self.WIS+getprof()
+        elif jack==True:
+            return self.DEX+getprof()/2
+        else:
+            return self.DEX
+
+weapons = {
+    'martial': ("greataxe", "greatsword", "longsword"),
+    'simple': ("dagger", "quarterstaff", "shortsword")
+}
+player = char()
+
+genChar()
+
+
+def startout():
+    if player.role == "simple farmer":
+        response= raw_input("It's been a tough season, the previous winter was the harshest that you've ever experienced  so stocks were nearly depleated. This year's harvest wasnt exceptional, and thoughit should be mid autumn, the air is chillier that it should for this time of year. After a hard days work, while finally relaxing with your dinner, you hear a loud pounding at your door. What do you do? (answer politely)(answer impolitely)(pretend not to hear)(peek out the window to see who is there")
+    elif player.role == "loner":
+        print "you die of dysentery on by yourself"
+    elif player.role == "leader":
+        print "you die of dysentery in front of everybody"
+    elif player.role == "soldier":
+        print "you die of dysentery in a fort"
+    elif player.role == "apprentice":
+        print "you die of dysentery in a slightly nicer house"
+
+startout()
